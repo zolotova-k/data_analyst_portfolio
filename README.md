@@ -1,1 +1,2 @@
-# data_analyst_portfolio
+Hi, I´m Ekaterina, welcome on my portfolio!
+.....
