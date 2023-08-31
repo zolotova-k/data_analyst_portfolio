@@ -1,9 +1,6 @@
-```json
-//#f03c15
 #Postgresql data analysis for a video rental store based on Sakila Sample Database
 #Info about the database: http://dev.mysql.com/doc/sakila/en/index.html
-```
-$${\color{red}Red}$$
+
 
 #Schema of the database: Actor ( actor id, first name, last name, last update)
 Address ( address id, address, address2◦, district, city id→City, postal code◦, phone, last update)
