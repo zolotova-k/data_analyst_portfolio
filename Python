@@ -12,13 +12,13 @@ pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
 
 #Dateiname eingeben
-df= pd.read_excel('History_ZUMSAA_2018-2022_joined.xlsx')
+df= pd.read_excel('example_python_analytics.xlsx')
 
-#Maschinenmodell eingeben (hier: TD100)
-df=df[df['ORDERCODE'].str.startswith('TD100')]
+#Maschinenmodell eingeben (hier: ABC100)
+df=df[df['ORDERCODE'].str.startswith('ABC100')]
 
-#Maschienencode eingeben (hier: TD)
-df=df[df.columns[pd.Series(df.columns).str.startswith('TD')]]
+#Maschienencode eingeben (hier: ABC)
+df=df[df.columns[pd.Series(df.columns).str.startswith('ABC')]]
 
 result2 = pd.DataFrame(columns=['Feature', 'Options', 'Count'])
 result1 = pd.DataFrame(columns=['Feature1', 'Options1', 'Relative'])
