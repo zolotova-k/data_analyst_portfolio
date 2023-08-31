@@ -1,1 +1,56 @@
+#I would like to show you a real example of an assignment I solved using Python
 
+#
+
+
+import pandas as pd
+import numpy as np
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
+
+#Dateiname eingeben
+df= pd.read_excel('History_ZUMSAA_2018-2022_joined.xlsx')
+
+#Maschinenmodell eingeben (hier: TD100)
+df=df[df['ORDERCODE'].str.startswith('TD100')]
+
+#Maschienencode eingeben (hier: TD)
+df=df[df.columns[pd.Series(df.columns).str.startswith('TD')]]
+
+result2 = pd.DataFrame(columns=['Feature', 'Options', 'Count'])
+result1 = pd.DataFrame(columns=['Feature1', 'Options1', 'Relative'])
+result3 = pd.DataFrame(columns=['Feature', 'Options', 'Relative ohne *'])
+result = pd.DataFrame(columns=['Feature', 'Options','Count','Relative','Relative ohne *'])
+
+for column in df.columns:
+    
+    value_counts = df[column].value_counts()
+    for idx, (value, count) in enumerate(value_counts.items()):
+            result2 = pd.concat([result2, pd.DataFrame({'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
+           
+    value_counts = df[column].value_counts(normalize=True)
+    for idx, (value, count) in enumerate(value_counts.items()):
+            result1 = pd.concat([result1, pd.DataFrame({'Feature1': column, 'Options1': value, 'Relative': count}, index=[0])], ignore_index=True) 
+
+df1 = df.copy()
+
+        
+for column in df1.columns:
+    df1[column] = df1[column].replace(['*'], None)
+    value_counts = (df1[column]).value_counts(normalize=True)
+    for idx, (value, count) in enumerate(value_counts.items()):
+      result3= pd.concat([result3, pd.DataFrame({'Feature': column, 'Options': value, 'Relative ohne *': count}, index=[0])], ignore_index=True)         
+
+result3.loc[:, 'Relative ohne *'] = result3['Relative ohne *'].map('{:.2f}'.format)     
+result33 = result3.replace(np.nan, '', regex=True)      
+result = pd.concat([result2, result1], axis=1)     
+result = pd.merge(result, result33, on=[ 'Feature', 'Options'], how="left")
+result.loc[:, 'Relative'] = result['Relative'].map('{:.2f}'.format)
+result=result.fillna("")
+
+with pd.option_context('display.max_rows', None, 'display.max_columns', None, 'display.width', 1000):
+    print(result[['Feature', 'Options', 'Count', 'Relative','Relative ohne *']])
+    result[['Feature', 'Options', 'Count', 'Relative','Relative ohne *']].to_excel('output.xlsx', index=False)
