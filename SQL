@@ -37,6 +37,7 @@ AND p.rental_id=r.rental_id
 GROUP BY f.film_id
 ORDER BY ertrag desc, f.film_id
 
+
 #2)what are the favorite film categories of the regular customers? (a regular customer is one who has rented films more than 10 times)
 
 WITH cat_rentals AS
@@ -54,4 +55,28 @@ SELECT *
 FROM cat_rentals
 WHERE number_rentals>10
 -- > clients who has rented more than 10 times
-ORDER BY last_name, first_name, number_rentals desc
+ORDER BY number_rentals desc, last_name, first_name
+
+
+#3)films with which actor/actress are most often rented by сlients? determine for each customer his favorite actor/actress
+WITH actor_film_rent as
+--create a new table
+(SELECT c.customer_id, c.first_name, c.last_name, a.actor_id, a.first_name, a.last_name, COUNT(*) as number_rentals
+FROM customer c, film_actor fa, inventory i, rental r, actor a
+WHERE a.actor_id=fa.actor_id
+AND fa.film_id=i.film_id
+AND i.inventory_id=r.inventory_id
+AND r.customer_id=c.customer_id
+-- connection between actors, rentals and customers
+Group by a.actor_id, a.first_name, a.last_name, c.customer_id, c.first_name, c.last_name)
+-- ->Tabelle mit allen Kunden und Anzahl der Ausleihen von Filmen mit jedem Schauspieler
+Select *
+From actor_film_rent afr1 
+Where not exists
+(Select * 
+From actor_film_rent afr2
+Where afr1.customer_id=afr2.customer_id
+And afr1.number_rentals<afr2.number_rentals)
+-- -> die größten zahlen für jeden Kunden ausgeben
+Order by customer_id, actor_id
+
