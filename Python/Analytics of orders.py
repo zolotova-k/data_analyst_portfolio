@@ -42,20 +42,20 @@ result = pd.DataFrame(columns=['Ordercode','Feature', 'Options','Count','Relativ
 for column in df.columns:
       value_counts = df[column].value_counts()
       #value_counts() function returns object containing counts of unique values
-   for idx, (value, count) in enumerate(value_counts.items()):
-      result2 = pd.concat([result2, pd.DataFrame({'Ordercode': a,'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
+      for idx, (value, count) in enumerate(value_counts.items()):
+          result2 = pd.concat([result2, pd.DataFrame({'Ordercode': a,'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
        
-value_counts = df[column].value_counts(normalize=True)
-#the function "value_counts(normalize=True)" returns the relative frequencies of the values
-for idx, (value, count) in enumerate(value_counts.items()):
-             result1 = pd.concat([result1, pd.DataFrame({'Feature1': column, 'Options1': value, 'Relative': count}, index=[0])], ignore_index=True) 
+      value_counts = df[column].value_counts(normalize=True)
+      #the function "value_counts(normalize=True)" returns the relative frequencies of the values
+      for idx, (value, count) in enumerate(value_counts.items()):
+          result1 = pd.concat([result1, pd.DataFrame({'Feature1': column, 'Options1': value, 'Relative': count}, index=[0])], ignore_index=True) 
  
 df1 = df.copy()
        
 for column in df1.columns:
    df1[column] = df1[column].replace(['`*`'], None)
    value_counts = (df1[column]).value_counts(normalize=True)
-for idx, (value, count) in enumerate(value_counts.items()):
+   for idx, (value, count) in enumerate(value_counts.items()):
                result3= pd.concat([result3, pd.DataFrame({'Feature': column, 'Options': value, 'Relative without *': count}, index=[0])], ignore_index=True)         
  
 result3.loc[:, 'Relative without *'] = result3['Relative without *'].map('{:.2f}'.format)     
