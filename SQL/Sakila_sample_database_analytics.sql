@@ -32,7 +32,7 @@ FROM film f, payment p, rental r, inventory i
 WHERE f.film_id=i.film_id
 AND i.inventory_id=r.inventory_id
 AND p.rental_id=r.rental_id
-#"film" and "payment" are now connected
+--"film" and "payment" are now connected
 GROUP BY f.film_id
 ORDER BY ertrag desc, f.film_id
 
