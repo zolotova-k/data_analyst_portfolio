@@ -6,7 +6,8 @@ The company wanted to know which options for each feature in each type of machin
 I was supposed to analyze the table of orders for the last 5 years. All the features selected by the client were indicated there for each order. 
 
 INPUT DATA: see an example "example_orders".
-Order - order number. Ordercode - code of the selected machine. 
+Order - order number. 
+Ordercode - code of the selected machine. 
 The remaining columns list the features (the first letters in the name indicate the code of the machine they belong to).
 The selected option is written in the corresponding cell. 
 
