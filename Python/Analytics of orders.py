@@ -29,25 +29,25 @@ df=df[df['ORDERCODE'].str.startswith('ABC100')]
 
 #enter machine code (here: ABC)
  df=df[df.columns[pd.Series(df.columns).str.startswith('ABC')]]
-<br /> 
-<br /> result2 = pd.DataFrame(columns=['Ordercode','Feature', 'Options', 'Count'])
-<br /> _#a table to count all of the feature options_
-<br /> result1 = pd.DataFrame(columns=['Feature1', 'Options1', 'Relative'])
-<br /> _#a table to save the relative frequencies of the values_
-<br /> result3 = pd.DataFrame(columns=['Feature', 'Options', 'Relative without `*`'])
-<br /> _#a table to calculate the relative frequencies of the values excluding `*`_
-<br /> result = pd.DataFrame(columns=['Ordercode','Feature', 'Options','Count','Relative','Relative without `*`'])
-<br /> *#a table for the final result*
-<br />
-<br /> for column in df.columns:
-<br />    
-<br />   value_counts = df[column].value_counts()
-<br />   *#value_counts() function returns object containing counts of unique values*
-<br />   for idx, (value, count) in enumerate(value_counts.items()):
-<br />     result2 = pd.concat([result2, pd.DataFrame({'Ordercode': a,'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
-<br />       
-<br /> value_counts = df[column].value_counts(normalize=True)
-<br /> *#the function "value_counts(normalize=True)" returns the relative frequencies of the values*
+ 
+result2 = pd.DataFrame(columns=['Ordercode','Feature', 'Options', 'Count'])
+#a table to count all of the feature options_
+result1 = pd.DataFrame(columns=['Feature1', 'Options1', 'Relative'])
+#a table to save the relative frequencies of the values
+result3 = pd.DataFrame(columns=['Feature', 'Options', 'Relative without *'])
+#a table to calculate the relative frequencies of the values excluding *
+result = pd.DataFrame(columns=['Ordercode','Feature', 'Options','Count','Relative','Relative without *'])
+#a table for the final result
+
+for column in df.columns:
+    
+   value_counts = df[column].value_counts()
+   #value_counts() function returns object containing counts of unique values
+   for idx, (value, count) in enumerate(value_counts.items()):
+     result2 = pd.concat([result2, pd.DataFrame({'Ordercode': a,'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
+       
+ value_counts = df[column].value_counts(normalize=True)
+ #the function "value_counts(normalize=True)" returns the relative frequencies of the values
 <br /> for idx, (value, count) in enumerate(value_counts.items()):
 <br />     result1 = pd.concat([result1, pd.DataFrame({'Feature1': column, 'Options1': value, 'Relative': count}, index=[0])], ignore_index=True) 
 <br /> 
