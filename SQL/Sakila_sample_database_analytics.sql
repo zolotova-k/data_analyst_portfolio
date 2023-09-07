@@ -1,8 +1,10 @@
-Postgresql data analysis for a video rental store based on Sakila Sample Database
+POSTGRESQL DATA ANALYSIS FOR A VIDEO RENTAL STORE BASED ON SAKILA SAMPLE DATABASE
+  
 Info about the database: http://dev.mysql.com/doc/sakila/en/index.html
 
 
-Schema of the database: Actor ( actor id, first name, last name, last update)
+Schema of the database: 
+Actor ( actor id, first name, last name, last update)
 Address ( address id, address, address2◦, district, city id→City, postal code◦, phone, last update)
 Category ( category id, name, last update)
 City ( city id, city, country id→Country, last update)
