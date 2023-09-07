@@ -5,30 +5,30 @@ Each of the parts of the machine (features) had several options, from which a cl
 The company wanted to know which options for each feature in each type of machine were more likely to be selected than others. 
 I was supposed to analyze the table of orders for the last 5 years. All the features selected by the client were indicated there for each order. 
 
-__INPUT DATA: see an example "example_orders".__
+INPUT DATA: see an example "example_orders".
 Order - order number. Ordercode - code of the selected machine. 
 The remaining columns list the features (the first letters in the name indicate the code of the machine they belong to).
 The selected option is written in the corresponding cell. 
 
- __OUTPUT DATA: see an example "example_orders_output"__
-<br />
-<br />
-<br />import pandas as pd
-<br />import numpy as np
-<br />
-<br />pd.set_option('display.max_rows', None)
-<br />pd.set_option('display.max_columns', None)
-<br />pd.set_option('display.width', None)
-<br />pd.set_option('display.max_colwidth', None)
-<br />
-<br />_#import data_
-<br />df= pd.read_excel('example_orders.xlsx')
-<br />
-<br />_#enter machine model (here: ABC100)_
-<br />df=df[df['ORDERCODE'].str.startswith('ABC100')]
-<br /> 
-<br /> _#enter machine code (here: ABC)_
-<br /> df=df[df.columns[pd.Series(df.columns).str.startswith('ABC')]]
+OUTPUT DATA: see an example "example_orders_output"
+
+                                                                                                                                
+import pandas as pd
+import numpy as np
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
+
+#import data
+df= pd.read_excel('example_orders.xlsx')
+
+#enter machine model (here: ABC100)
+df=df[df['ORDERCODE'].str.startswith('ABC100')]
+
+#enter machine code (here: ABC)
+ df=df[df.columns[pd.Series(df.columns).str.startswith('ABC')]]
 <br /> 
 <br /> result2 = pd.DataFrame(columns=['Ordercode','Feature', 'Options', 'Count'])
 <br /> _#a table to count all of the feature options_
