@@ -1,13 +1,13 @@
-### I would like to show you a real example of an assignment I solved using Python
+I would like to show you a real example of an assignment I solved using Python
 
 The company I worked for made machines that the customer could configure to suit their needs. 
 Each of the parts of the machine (features) had several options, from which a client has to choose one. 
 The company wanted to know which options for each feature in each type of machine were more likely to be selected than others. 
 I was supposed to analyze the table of orders for the last 5 years. All the features selected by the client were indicated there for each order. 
 
-<br /> __INPUT DATA: see an example "example_orders".__
-<br /> Order - order number. Ordercode - code of the selected machine. 
-<br />The remaining columns list the features (the first letters in the name indicate the code of the machine they belong to).
+__INPUT DATA: see an example "example_orders".__
+Order - order number. Ordercode - code of the selected machine. 
+The remaining columns list the features (the first letters in the name indicate the code of the machine they belong to).
 <br />The selected option is written in the corresponding cell. 
 <br />
 <br /> __OUTPUT DATA: see an example "example_orders_output"__
