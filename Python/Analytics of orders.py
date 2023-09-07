@@ -8,9 +8,9 @@ I was supposed to analyze the table of orders for the last 5 years. All the feat
 __INPUT DATA: see an example "example_orders".__
 Order - order number. Ordercode - code of the selected machine. 
 The remaining columns list the features (the first letters in the name indicate the code of the machine they belong to).
-<br />The selected option is written in the corresponding cell. 
-<br />
-<br /> __OUTPUT DATA: see an example "example_orders_output"__
+The selected option is written in the corresponding cell. 
+
+ __OUTPUT DATA: see an example "example_orders_output"__
 <br />
 <br />
 <br />import pandas as pd
