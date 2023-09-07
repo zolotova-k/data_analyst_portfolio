@@ -47,7 +47,7 @@ I was supposed to analyze the table of orders for the last 5 years. All the feat
 <br />     result2 = pd.concat([result2, pd.DataFrame({'Ordercode': a,'Feature': column, 'Options': value, 'Count': count}, index=[0])], ignore_index=True)
 <br />       
 <br /> value_counts = df[column].value_counts(normalize=True)
-<br /> *the function "value_counts(normalize=True)" returns the relative frequencies of the values*
+<br /> *#the function "value_counts(normalize=True)" returns the relative frequencies of the values*
 <br /> for idx, (value, count) in enumerate(value_counts.items()):
 <br />     result1 = pd.concat([result1, pd.DataFrame({'Feature1': column, 'Options1': value, 'Relative': count}, index=[0])], ignore_index=True) 
 <br /> 
