@@ -1,8 +1,8 @@
-#Postgresql data analysis for a video rental store based on Sakila Sample Database
-#Info about the database: http://dev.mysql.com/doc/sakila/en/index.html
+Postgresql data analysis for a video rental store based on Sakila Sample Database
+Info about the database: http://dev.mysql.com/doc/sakila/en/index.html
 
 
-#Schema of the database: Actor ( actor id, first name, last name, last update)
+Schema of the database: Actor ( actor id, first name, last name, last update)
 Address ( address id, address, address2◦, district, city id→City, postal code◦, phone, last update)
 Category ( category id, name, last update)
 City ( city id, city, country id→Country, last update)
@@ -20,12 +20,12 @@ Staff ( staff id, first name, last name, address id→Address, picture◦, email
 Store ( store id, manager staff id→Staff, address id→Address, last update)
 
 
-#As an example, I wrote 3 queries to analyze this database. 
-#They are aimed at identifying the preferences of the clients of this store. 
-#Based on these kind of data, it is possible to choose a vector for further business development.
+As an example, I wrote 3 queries to analyze this database. 
+They are aimed at identifying the preferences of the clients of this store. 
+Based on these kind of data, it is possible to choose a vector for further business development.
 
 
-#1)how much money did the salon earn from each of the films?
+1)how much money did the salon earn from each of the films?
 
 SELECT f.film_id, f.title, SUM (p.amount) as ertrag
 FROM film f, payment p, rental r, inventory i
@@ -37,7 +37,7 @@ GROUP BY f.film_id
 ORDER BY ertrag desc, f.film_id
 
 
-#2)what are the favorite film categories of the regular customers? 
+2)what are the favorite film categories of the regular customers? 
 (a regular customer is one who has rented films more than 10 times)
 
 WITH cat_rentals AS
@@ -58,7 +58,7 @@ WHERE number_rentals>10
 ORDER BY number_rentals desc, last_name, first_name
 
 
-#3)films with which actor/actress are most often rented by сlients? determine for each customer his favorite actor/actress
+3)films with which actor/actress are most often rented by сlients? determine for each customer his favorite actor/actress
 
 WITH actor_film_rent as
 --create a new table
